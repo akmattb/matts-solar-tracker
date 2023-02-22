@@ -38,6 +38,9 @@ int verticalError = 0;
 int trackerLRPos = 90;    //Create a variable to store the servo position
 int trackerTBPos = 90;
 
+//Debugging Message
+String message = "";
+
 void setup() 
 { 
  //Servo pins
@@ -87,5 +90,10 @@ void loop()
       trackerTBPos = constrain (trackerTBPos, 10,120);
       trackerTB.write(trackerTBPos); 
   }
+  
+  message = "HORZ-ERR:"+horizontalError;
+  message = message + "|VERT-ERR:" + verticalError + "|TOP-LEFT:" + ldr_top_left +"|TOP-RIGHT:" + ldr_top_right + "|BOT-LEFT:" + ldr_bottom_left + "|BOT-RIGHT:" + ldr_bottom_right;
+
+  Serial.println(message);
   delay(25);
 }
